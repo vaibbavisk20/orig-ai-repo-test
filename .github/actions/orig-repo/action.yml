@@ -63,7 +63,6 @@ runs:
 
           # Get permissions
           azd auth login --client-id ${{ env.AZURE_CLIENT_ID }} --federated-credential-provider "github" --tenant-id ${{ env.AZURE_TENANT_ID }}
-          Update-PSResource Az
           Get-AzAccessToken -ResourceUrl "https://vault.azure.net"
 
           # Set requied environment variables
