@@ -62,7 +62,7 @@ runs:
           azd init -t azure-search-openai-demo --no-prompt -e ${{ inputs.env-name }}
 
           # Get permissions
-          azd auth login --client-id ${{ env.AZURE_CLIENT_ID }} --federated-credential-provider "github" --tenant-id ${{ env.AZURE_TENANT_ID }}
+          # azd auth login --client-id ${{ env.AZURE_CLIENT_ID }} --federated-credential-provider "github" --tenant-id ${{ env.AZURE_TENANT_ID }}
           # Get-AzAccessToken -ResourceUrl "https://vault.azure.net"
 
           # Set requied environment variables
