@@ -76,7 +76,7 @@ runs:
           azd env set AZURE_DOCUMENTINTELLIGENCE_LOCATION ${{ inputs.documentintelligence-location }}
 
           # Set additional environment variables
-          $jsonObject = ConvertFrom-Json -InputObject $env:INPUT_ARGS -AsHashtable
+          $jsonObject = $env:INPUT_ARGS | ConvertFrom-Json $env:INPUT_ARGS -asHashtable
           foreach ($key in $jsonObject.Keys) {
             $value = $jsonObject[$key]
             azd env set $key $value
