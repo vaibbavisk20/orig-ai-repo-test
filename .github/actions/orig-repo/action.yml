@@ -81,7 +81,6 @@ runs:
             $value = $jsonObject[$key]
             azd env set $key $value
           }
-
           azd env get-values
 
           # Bring your own data
