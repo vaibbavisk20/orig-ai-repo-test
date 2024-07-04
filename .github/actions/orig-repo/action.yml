@@ -72,6 +72,8 @@ runs:
 
     - name: Az powershell
       uses: azure/powershell@v2
+      env:
+        BRING_YOUR_OWN_DATA: ${{ inputs.bring-your-own-data }}
       with:
         inlineScript: |
           # cd airepo
@@ -89,6 +91,14 @@ runs:
           azd env set AZURE_DOCUMENTINTELLIGENCE_LOCATION ${{ inputs.documentintelligence-location }}
           azd env set BRING_YOUR_OWN_DATA ${{ inputs.bring-your-own-data }}
           azd env set CUSTOM_DATA_PATH ${{ inputs.data-path }}
+          if (Test-Path data) {
+            Remove-Item data -Recurse -Force
+          }
+          $bringYourOwnData = [System.Convert]::ToBoolean($env:BRING_YOUR_OWN_DATA)
+          if ($bringYourOwnData -eq $true) {
+            Write-Output "The bring-your-own-data input is true."
+            Copy-Item ../${{ inputs.data-path }} data -Recurse
+          }
           Get-AzContext -ListAvailable
           azd env get-values
           azd up --no-prompt -e ${{ inputs.env-name }}
