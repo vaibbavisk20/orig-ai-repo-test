@@ -81,7 +81,7 @@ runs:
           #   $value = $jsonObject[$key]
           #   azd env set $key $value
           # }
-          azd env get-values
+          # azd env get-values
 
           # Bring your own data
           $bringYourOwnData = [System.Convert]::ToBoolean($env:BRING_YOUR_OWN_DATA)
