@@ -100,4 +100,4 @@ runs:
           # azd up --no-prompt -e ${{ inputs.env-name }}
 
 
-        azPSVersion: "latest"
+        azPSVersion: "12.0.0"
