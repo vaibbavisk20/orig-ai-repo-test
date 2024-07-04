@@ -59,7 +59,7 @@ runs:
           dir
           mkdir orig-ai-repo
           cd orig-ai-repo
-          azd init -t Azure-Samples/azure-search-openai-demo -e ${{ inputs.env-name }} --no-prompt
+          azd init -t Azure-Samples/azure-search-openai-demo -e ${{ inputs.env-name }}
 
           # Get permissions
           azd auth login --client-id ${{ env.AZURE_CLIENT_ID }} --federated-credential-provider "github" --tenant-id ${{ env.AZURE_TENANT_ID }}
