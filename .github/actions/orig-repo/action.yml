@@ -59,29 +59,29 @@ runs:
           dir
           mkdir orig-ai-repo
           cd orig-ai-repo
-          # azd init -t azure-search-openai-demo --no-prompt -e ${{ inputs.env-name }}
+          azd init -t Azure-Samples/azure-search-openai-demo -e ${{ inputs.env-name }} --no-prompt
 
           # Get permissions
-          # azd auth login --client-id ${{ env.AZURE_CLIENT_ID }} --federated-credential-provider "github" --tenant-id ${{ env.AZURE_TENANT_ID }}
-          # Get-AzAccessToken -ResourceUrl "https://vault.azure.net"
+          azd auth login --client-id ${{ env.AZURE_CLIENT_ID }} --federated-credential-provider "github" --tenant-id ${{ env.AZURE_TENANT_ID }}
+          Get-AzAccessToken -ResourceUrl "https://vault.azure.net"
 
           # Set requied environment variables
-          # azd env set AZURE_SUBSCRIPTION_ID ${{ env.AZURE_SUBSCRIPTION_ID }}
-          # azd env set AZURE_PRINCIPAL_ID ${{ env.AZURE_PRINCIPAL_ID}}
+          azd env set AZURE_SUBSCRIPTION_ID ${{ env.AZURE_SUBSCRIPTION_ID }}
+          azd env set AZURE_PRINCIPAL_ID ${{ env.AZURE_PRINCIPAL_ID}}
 
           # Set environment variables to answer prompts
-          # azd env set AZURE_LOCATION ${{ inputs.location }}
-          # azd env set AZURE_PRINCIPAL_NAME ${{ inputs.principal-name }}  
-          # azd env set AZURE_OPENAI_LOCATION ${{ inputs.openai-location }}
-          # azd env set AZURE_DOCUMENTINTELLIGENCE_LOCATION ${{ inputs.documentintelligence-location }}
+          azd env set AZURE_LOCATION ${{ inputs.location }}
+          azd env set AZURE_PRINCIPAL_NAME ${{ inputs.principal-name }}  
+          azd env set AZURE_OPENAI_LOCATION ${{ inputs.openai-location }}
+          azd env set AZURE_DOCUMENTINTELLIGENCE_LOCATION ${{ inputs.documentintelligence-location }}
 
           # Set additional environment variables
-          # $jsonObject = ConvertFrom-Json -InputObject $env:INPUT_ARGS -AsHashtable
-          # foreach ($key in $jsonObject.Keys) {
-          #   $value = $jsonObject[$key]
-          #   azd env set $key $value
-          # }
-          # azd env get-values
+          $jsonObject = ConvertFrom-Json -InputObject $env:INPUT_ARGS -AsHashtable
+          foreach ($key in $jsonObject.Keys) {
+            $value = $jsonObject[$key]
+            azd env set $key $value
+          }
+          azd env get-values
 
           # Bring your own data
           $bringYourOwnData = [System.Convert]::ToBoolean($env:BRING_YOUR_OWN_DATA)
