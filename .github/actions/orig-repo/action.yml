@@ -78,7 +78,7 @@ runs:
           dir
           mkdir orig-ai-repo
           cd orig-ai-repo
-          azd init -t azure-search-openai-demo
+          azd init -t azure-search-openai-demo --no-prompt -e ${{ inputs.env-name }}
           azd auth login --client-id ${{ inputs.client-id }} --federated-credential-provider "github" --tenant-id ${{ inputs.tenant-id }}
           Get-AzAccessToken -ResourceUrl "https://vault.azure.net"
           azd env new ${{ inputs.env-name }}
