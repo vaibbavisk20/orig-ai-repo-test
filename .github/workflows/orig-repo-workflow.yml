@@ -20,22 +20,22 @@ jobs:
     env:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_PRINCIPAL_ID: ${{ secrets.AZURE_APP_ID }}
       AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      ADDITIONAL_ARGS: '{"AZURE_APP_SERVICE_SKU":"B2", "AZURE_OPENAI_CHATGPT_MODEL":"gpt-35-turbo", "AZURE_OPENAI_EMB_DEPLOYMENT_CAPACITY":40}'
     steps:
         - name: Checkout master
           uses: actions/checkout@v3
           
         - name: Deploy Open AI infrastructure action execution
-          uses: ./.github/actions/orig-repo
+          uses: ./
           with:
-              client-id: ${{ secrets.AZURE_CLIENT_ID }}
-              tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-              principal-id: ${{ secrets.AZURE_APP_ID }}
-              subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
               location: ${{ vars.AZURE_LOCATION }}
               env-name: ${{ vars.AZURE_ENV_NAME }}
-              principal-name: ${{ secrets.AZURE_APP_NAME }}
               openai-location: ${{ vars.AZURE_OPENAI_LOCATION }}
               documentintelligence-location: ${{ vars.AZURE_DOCUMENTINTELLIGENCE_LOCATION }}
               bring-your-own-data: true
-              data-path: "newdata"
+              data-path: "mydata"
+              additional-args: '{"AZURE_APP_SERVICE_SKU":"B2", "AZURE_OPENAI_CHATGPT_MODEL":"gpt-35-turbo", "AZURE_OPENAI_EMB_DEPLOYMENT_CAPACITY":40}'
+
+              
