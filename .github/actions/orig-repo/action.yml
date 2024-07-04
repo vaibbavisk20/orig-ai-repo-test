@@ -77,10 +77,8 @@ runs:
 
           # Set additional environment variables
           $jsonObject = ConvertFrom-Json -InputObject $env:INPUT_ARGS -AsHashtable
-          $jsonObject
           foreach ($key in $jsonObject.Keys) {
             $value = $jsonObject[$key]
-            Write-Output "Env var: $key, value: $value"
             azd env set $key $value
           }
 
